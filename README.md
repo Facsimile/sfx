@@ -45,8 +45,8 @@ extends AnyVal {...}
 
 This fairly trivial change has some interesting implications:
 
-1. Users work with solely with _JavaFX_ classes, and should never create instances of the _Scala_ wrapper classes.
-This simplifies how _Scala_ users interact with _JavaFX_, including working with custom _JavaFX_ subclasses and _FXML_.
+1. Users work solely with _JavaFX_ classes, and should never create instances of the _Scala_ wrapper classes. This
+simplifies how _Scala_ users interact with _JavaFX_, including working with custom _JavaFX_ subclasses and _FXML_.
 1. Having an implicit class extend from `AnyVal` is a hint to the _Scala_ compiler that it does not need to create
 instances of the wrapper class—it simply re-uses the sole constructor argument _as is_. This eliminates the memory and
 conversion/garbage collection processing overhead of using _delegate_ classes.
