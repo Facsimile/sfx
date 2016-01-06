@@ -4,7 +4,7 @@ A lightweight set of _Scala_ wrappers for _JavaFX_.
 
 # Motivation
 
-_sfx_ was inspired by the excellent _[ScalaFX](http://www.scalafx.org/)_ project. Indeed, the oringal author of _sfx_
+_sfx_ was inspired by the excellent _[ScalaFX](http://www.scalafx.org/)_ project. Indeed, the original author of _sfx_
 contributed to the _ScalaFX_ project before founding _sfx_.
 
 So, why start another _Scala/JavaFX_ project? In our opinion, _ScalaFX_ suffers from a number of drawbacks, the primary
@@ -18,7 +18,7 @@ class SomeScalaFXClass (delegate: SomeJavaFXClass) {...}
 This has the following drawbacks:
 
 1. The _ScalaFX_ version of the class must provide _wrappers_ for every single public member of its associated _JavaFX_
-class. This is a boring chore for the developers of _ScalaFX_, and many of the duplicated members provide much in
+class. This is a boring chore for the developers of _ScalaFX_, and many of the duplicated members provide little in
 the way of added-value to users of the library.
 1. While the resulting _ScalaFX_ and _JavaFX_ classes are interchangable, through _implicit_ conversion functions, there
 can be a lot of thrashing about between the two. In particular, every time a _JavaFX_ instance is converted to its
