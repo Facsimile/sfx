@@ -28,18 +28,56 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file defining the org.facsim.sfx.stage package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx
 
 //======================================================================================================================
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
-
-@since 0.0
+Wrappers for `javafx.stage` elements.
 */
 //======================================================================================================================
 
-package object sfx
+import javafx.event.EventDispatcher
+import javafx.scene.Scene
+import javafx.stage.{Window => JFXWindow}
+
+package object stage {
+
+  implicit class Window (w: JFXWindow)
+  extends AnyVal {
+    def eventDispatcher = w.getEventDispatcher
+    def eventDispatcher_= (ed: EventDispatcher) = w.setEventDispatcher (ed)
+
+    def height = w.getHeight
+    def height_= (h: Double) = w.setHeight (h)
+
+    def onCloseRequest = w.getOnCloseRequest
+    def onCloseRequest_= (e: => Unit) = w.setOnCloseRequest (???)
+
+    def onHidden = w.getOnHidden
+    def onHiddin_= (e: => Unit) = w.setOnHidden (???)
+
+    def onHiding = w.getOnHiding
+    def onHiding_= (e: => Unit) = w.setOnHiding(???)
+
+    def onShowing = w.getOnShowing
+    def onShowing_= (e: => Unit) = w.setOnShowing(???)
+
+    def onShown = w.getOnShown
+    def onShown_= (e: => Unit) = w.setOnShown(???)
+
+    def opacity = w.getOpacity
+    def opacity_= (e: => Unit) = w.setOpacity(???)
+
+    def properties = w.getProperties
+
+    def scene = w.getScene
+    def scene_= (s: Scene) = w.setScene (s)
+
+
+    , getUserData, getWidth, getX, getY}
+  }
+}

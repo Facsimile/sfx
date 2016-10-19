@@ -28,18 +28,25 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file belonging to the org.facsim.sfx.util package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx.util
 
-//======================================================================================================================
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
+Queue code&mash;particularly constructor code&mdash;for later execution.
 
-@since 0.0
+@note This is intended as a replacement for the ''deprecated Scala'' [[scala.DelayedInit]] trait. Unlike `DelayedInit`,
+constructor code is not implicitly wrapped in a function call, and so code which requires delayed initialization must be
+explcit.
 */
-//======================================================================================================================
 
-package object sfx
+trait DelayedExecution {
+
+  final def delayExecution (c: => Unit) = {
+  }
+
+  final def execute () = {
+  }
+}

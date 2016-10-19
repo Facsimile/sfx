@@ -28,18 +28,42 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file belonging to the org.facsim.sfx package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx
 
-//======================================================================================================================
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
-
-@since 0.0
+Central repository for all ''JavaFX'' global information.
 */
-//======================================================================================================================
+private[sfx] object SFX {
 
-package object sfx
+/**
+State of this ''SFX'' application.
+
+Much of the information reported by this singleton is served by the current state. The initialize state is to be
+uninitialized.
+*/
+
+  private var state: SFXState = SFXUninitialized
+
+/**
+Update the state of the application.
+
+@param newState New state of the application.
+*/
+
+  def apply(newState: SFXState): Unit = synchronized {
+    state = newState
+  }
+
+/**
+Report the ''JavaFX'' application instance.
+
+An exception will result if the ''JavaFX'' application has not yet been initialized.
+
+@return Sole ''JavaFX'' application instance.
+*/
+  def app = synchronized(state.jfxApp.get)
+}

@@ -28,18 +28,60 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file belonging to the org.facsim.sfx package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx
 
-//======================================================================================================================
+import javafx.application.Application
+
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
+Trait encapsulating the state of a ''JFX'' application.
 
-@since 0.0
+This provides an interface for specific states defined in this file.
 */
-//======================================================================================================================
+private[sfx] sealed trait SFXState {
 
-package object sfx
+/**
+The ''JavaFX'' application instance.
+
+This value is `None` unless there is an active ''JavaFX'' application instance.
+*/
+
+  val jfxApp: Option[Application] = None
+}
+
+/**
+Uninitialized.
+
+State for ''SFX'' applications that have yet to initialize ''JavaFX''.
+*/
+private[sfx] object SFXUninitialized
+extends SFXState
+
+/**
+Running.
+
+State for an ''SFX'' application that is currently running.
+
+@constructor Create new ''SFX'' running application.
+
+@param jfxApp ''JavaFX'' sole application instance. This cannot be `None` and must be defined.
+*/
+private[sfx] case class SFXRunning(override val jfxApp: Option[Application])
+extends SFXState {
+
+/*
+Sanity checks
+*/
+  require(jfxApp.isDefined)
+}
+
+/**
+Terminated.
+
+State for a ''JFX'' application that has been terminated, and which is no longer active.
+*/
+private[sfx] object SFXTerminated
+extends SFXState

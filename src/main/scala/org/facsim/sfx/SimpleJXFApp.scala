@@ -28,18 +28,32 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file belonging to the org.facsim.sfx package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx
 
 //======================================================================================================================
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
+Standalone ''JavaFX'' application.
 
-@since 0.0
+This trait is employed when creating
 */
 //======================================================================================================================
 
-package object sfx
+trait SimpleJFXApp {
+
+  final def main (args: Array [String]): Unit = {
+  }
+
+/**
+Queue initialization code for execution on the ''JavaFX'' event-dispatch thread.
+
+This function is intended as a replacement for the functionality provided by the ''deprecated'' [[scala.DelayedInit]]
+trait. It should be called from a class constructor
+ * @param c
+*/
+  protected final def jfxInit (c: => Unit) = {
+  }
+}

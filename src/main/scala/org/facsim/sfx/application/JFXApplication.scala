@@ -28,18 +28,27 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file belonging to the org.facsim.sfx.application package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx.application
 
-//======================================================================================================================
+import javafx.application.Application
+import javafx.stage.Stage
+
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
+''JavaFX'' application class.
 
-@since 0.0
+@note Instances of this class should only be constructed by the ''JavaFX'' framework.
+
+@constructor Initialize this ''JavaFX'' application.
 */
-//======================================================================================================================
+final class JFXApplication
+extends Application {
 
-package object sfx
+/**
+Start the application once construction has been completed.
+*/
+  def start(ps: Stage) = app.init(this)
+}

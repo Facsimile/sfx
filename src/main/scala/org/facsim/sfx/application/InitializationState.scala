@@ -28,18 +28,30 @@ standards at:
 
   http://facsim.org/Documentation/CodingStandards/
 ========================================================================================================================
-Scala source file defining the org.facsim.sfx package.
+Scala source file belonging to the org.facsim.sfx.application package.
 */
 //======================================================================================================================
 
-package org.facsim
+package org.facsim.sfx.application
 
-//======================================================================================================================
 /**
-''[[http://facsim.org/sfx Facsimile SFX]]'': A Lightweight ''Scala'' wrapper for ''JavaFX''.
-
-@since 0.0
+Base trait for storing ''JavaFX'' application initialization state.
 */
-//======================================================================================================================
+private[application] sealed trait InitializationState
 
-package object sfx
+/**
+Case class representing an initialized ''JavaFX'' application.
+
+@param app Initialized ''JavaFX'' application instance.
+*/
+private[application] case class Initialized(app: JFXApplication)
+extends InitializationState
+
+/**
+Case class representing an uninitialized ''JavaFX'' application state.
+
+@param ctors List of constructors to be executed, in reverse order. New constructor code blocks should be prepended to
+this list.
+*/
+private[application] case class Uninitialized(ctors: List[() => Unit] = Nil)
+extends InitializationState
